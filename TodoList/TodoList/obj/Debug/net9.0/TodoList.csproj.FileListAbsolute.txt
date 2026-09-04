@@ -1,0 +1,72 @@
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\appsettings.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\TodoList.staticwebassets.endpoints.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\TodoList.exe
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\TodoList.deps.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\TodoList.runtimeconfig.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\TodoList.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\TodoList.pdb
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.csproj.AssemblyReference.cache
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.AssemblyInfoInputs.cache
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.AssemblyInfo.cs
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\scopedcss\bundle\TodoList.styles.css
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.csproj.Up2Date
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\refint\TodoList.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.pdb
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\TodoList.genruntimeconfig.cache
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\obj\Debug\net9.0\ref\TodoList.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Xiaomi\Desktop\Metanit\_6Delegate_Events_Lambdas\_4Covariance\TodoList\TodoList\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\appsettings.Development.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\appsettings.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\TodoList.staticwebassets.endpoints.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\TodoList.exe
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\TodoList.deps.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\TodoList.runtimeconfig.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\TodoList.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\TodoList.pdb
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\Microsoft.OpenApi.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\bin\Debug\net9.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.csproj.AssemblyReference.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\rpswa.dswa.cache.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.AssemblyInfoInputs.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.AssemblyInfo.cs
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\rjimswa.dswa.cache.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\rjsmrazor.dswa.cache.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\rjsmcshtml.dswa.cache.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\scopedcss\bundle\TodoList.styles.css
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.build.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.build.json.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.development.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.build.endpoints.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.csproj.Up2Date
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\refint\TodoList.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.pdb
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\TodoList.genruntimeconfig.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\TodoList\TodoList\obj\Debug\net9.0\ref\TodoList.dll

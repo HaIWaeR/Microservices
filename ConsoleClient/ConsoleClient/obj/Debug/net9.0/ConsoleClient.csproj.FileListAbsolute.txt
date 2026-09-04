@@ -1,0 +1,28 @@
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.exe
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.deps.json
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.runtimeconfig.json
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.dll
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.pdb
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.AssemblyInfoInputs.cache
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.AssemblyInfo.cs
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.dll
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\refint\ConsoleClient.dll
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.pdb
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.genruntimeconfig.cache
+C:\Users\Xiaomi\source\repos\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ref\ConsoleClient.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.exe
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.deps.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.runtimeconfig.json
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\bin\Debug\net9.0\ConsoleClient.pdb
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.AssemblyInfoInputs.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.AssemblyInfo.cs
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.csproj.CoreCompileInputs.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\refint\ConsoleClient.dll
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.pdb
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ConsoleClient.genruntimeconfig.cache
+C:\Users\Xiaomi\OneDrive\Рабочий стол\Microservices\ConsoleClient\ConsoleClient\obj\Debug\net9.0\ref\ConsoleClient.dll
