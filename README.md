@@ -1,193 +1,117 @@
-# Модель TodoItem
-```c#
-    public class TodoItem
-    {
-        public int Id { get; set; }
-        public string Title { get; set; } = string.Empty;
-        public string? Description { get; set; }
-        public bool IsCompleted { get; set; } = false;
-        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
-    }
-```
+# eShopOnWeb: декомпозиция монолита на микросервисы
 
-# Program
-```c#
-using Microsoft.OpenApi;
+Документ описывает, как мы разбирали проект eShopOnWeb и как предлагаем разделить его на микросервисы. Здесь собраны анализ текущей архитектуры, выделенные границы сервисов, способы их взаимодействия и план перехода.
 
-var builder = WebApplication.CreateBuilder(args);
+## 1. Что мы взяли за основу
 
-//Swagger
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new OpenApiInfo
-    {
-        Title = "Todo API",
-        Version = "v1",
-        Description = "API для управления задачами"
-    });
-});
+eShopOnWeb — эталонное приложение интернет-магазина от Microsoft на ASP.NET Core 8. Несмотря на то, что код разделён на проекты, по сути это монолит:
 
-var app = builder.Build();
+- все проекты собираются в одно решение eShopOnWeb.sln и разворачиваются вместе;
+- Web и PublicApi используют одни и те же библиотеки ApplicationCore и Infrastructure;
+- каталог, корзина и заказы хранятся в одной базе через общий CatalogContext;
+- пользователи хранятся во второй базе через AppIdentityDbContext, но работают с ней те же самые приложения.
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "Todo API V1");
-        c.RoutePrefix = string.Empty;
-    });
-}
+Проект собран, запущены 74 теста, все прошли. Это дало нам уверенность, что мы отталкиваемся от рабочего состояния.
 
-app.UseHttpsRedirection();
+## 2. Как мы анализировали код
 
-// Бд
-var todos = new List<TodoItem.TodoItem>
-{
-    new TodoItem.TodoItem { Id = 1, Title = "Изучить HTTP", Description = "GET, POST, PUT, DELETE" },
-    new TodoItem.TodoItem { Id = 2, Title = "Написать первый API" },
-    new TodoItem.TodoItem { Id = 3, Title = "Протестировать в Postman" }
-};
-int nextId = 4;
+Сначала прошли по папке src и выписали, кто от кого зависит:
 
-// GET
-app.MapGet("/api/todos", (bool? completed) =>
-{
-    List<TodoItem.TodoItem> result = completed.HasValue
-        ? todos.Where(t => t.IsCompleted == completed.Value).ToList()
-        : todos;
-    return Results.Ok(result);
-});
+- ApplicationCore — сущности и бизнес-логика, ни от чего не зависит;
+- Infrastructure — EF Core, репозитории, Identity, зависит от ApplicationCore;
+- Web — сайт магазина (каталог, корзина, оформление заказа, личный кабинет);
+- PublicApi — REST API для каталога и авторизации;
+- BlazorAdmin — админ-панель, ходит только в PublicApi.
 
-// GET
-app.MapGet("/api/todos/{id:int}", (int id) =>
-{
-    TodoItem.TodoItem? todo = todos.FirstOrDefault(t => t.Id == id);
-    if (todo is null)
-        return Results.NotFound(new { message = $"Задача с id={id} не найдена" });
-    return Results.Ok(todo);
-});
+Затем открыли ApplicationCore/Entities и нашли там готовые агрегаты:
 
-// POST
-app.MapPost("/api/todos", (TodoItem.TodoItem newTodo) =>
-{
-    if (string.IsNullOrWhiteSpace(newTodo.Title))
-        return Results.BadRequest(new { message = "Поле Title обязательно" });
+- CatalogItem, CatalogBrand, CatalogType — каталог товаров;
+- BasketAggregate (Basket, BasketItem) — корзина;
+- OrderAggregate (Order, OrderItem, Address, CatalogItemOrdered) — заказы;
+- ApplicationUser в Infrastructure/Identity — пользователи.
 
-    newTodo.Id = nextId++;
-    newTodo.CreatedAt = DateTime.UtcNow;
-    newTodo.IsCompleted = false;
-    todos.Add(newTodo);
+Агрегаты уже почти не ссылаются друг на друга напрямую, только по идентификаторам. Например, BasketItem хранит CatalogItemId, а не объект товара. Это хороший признак: границы будущих сервисов в коде уже намечены.
 
-    return Results.Created($"/api/todos/{newTodo.Id}", newTodo);
-});
+Дальше посмотрели, где эти границы нарушаются. Главные места:
 
-// PUT
-app.MapPut("/api/todos/{id:int}", (int id, TodoItem.TodoItem updated) =>
-{
-    TodoItem.TodoItem? existing = todos.FirstOrDefault(t => t.Id == id);
-    if (existing is null)
-        return Results.NotFound(new { message = $"Задача с id={id} не найдена" });
+- CatalogContext содержит DbSet и для каталога, и для корзин, и для заказов, то есть одна база на всё;
+- OrderService.CreateOrderAsync в одном методе читает корзину из репозитория, читает товары каталога из репозитория и создаёт заказ — три области в одной транзакции;
+- BasketService и OrderService лежат в одной сборке ApplicationCore и вызываются Web напрямую.
 
-    existing.Title = updated.Title ?? existing.Title;
-    existing.Description = updated.Description;
-    existing.IsCompleted = updated.IsCompleted;
+Именно эти места придётся переделывать при выделении сервисов.
 
-    return Results.Ok(existing);
-});
+## 3. Предлагаемые сервисы
 
-// DELETE
-app.MapDelete("/api/todos/{id:int}", (int id) =>
-{
-    TodoItem.TodoItem? todo = todos.FirstOrDefault(t => t.Id == id);
-    if (todo is null)
-        return Results.NotFound(new { message = $"Задача с id={id} не найдена" });
+**CatalogService.** Товары, бренды, типы. CRUD для админки, список товаров с фильтрами и пагинацией для сайта, проверка наличия и цены для заказов. Своя база PostgreSQL, кэш товаров в Redis. Код переносится из CatalogItem, CatalogBrand, CatalogType и эндпоинтов PublicApi/CatalogItemEndpoints.
 
-    todos.Remove(todo);
-    return Results.NoContent();
-});
+**BasketService.** Корзина покупателя: добавить товар, изменить количество, удалить, очистить, перенести анонимную корзину на пользователя после входа. Корзина — временные данные, поэтому храним её в Redis. Код переносится из BasketAggregate и BasketService.
 
-// PATCH 
-app.MapPatch("/api/todos/{id:int}/complete", (int id) =>
-{
-    TodoItem.TodoItem? todo = todos.FirstOrDefault(t => t.Id == id);
-    if (todo is null)
-        return Results.NotFound(new { message = $"Задача с id={id} не найдена" });
+**OrderService.** Оформление заказа и история заказов. При создании заказа запрашивает у CatalogService актуальную цену и название товара и сохраняет их снимком, как это уже сделано через CatalogItemOrdered. После сохранения публикует событие OrderCreated. Своя база PostgreSQL. Код переносится из OrderAggregate и OrderService.
 
-    todo.IsCompleted = true;
-    return Results.Ok(todo);
-});
+**IdentityService.** Регистрация, вход, выдача JWT-токенов, роли (Administrators). Своя база. Код переносится из Infrastructure/Identity и авторизационных эндпоинтов PublicApi.
 
-app.Run();
-```
+**NotificationService.** Новый сервис, в монолите его нет. Подписан на OrderCreated и отправляет покупателю письмо о заказе. Своя небольшая база для журнала уведомлений.
 
-# ConsoleClient
-```c#
-using System.Net.Http.Json;
+**Web и BlazorAdmin** остаются клиентами. Они перестают вызывать ApplicationCore напрямую и обращаются к сервисам по HTTP через API Gateway.
 
-var handler = new HttpClientHandler
-{
-    ServerCertificateCustomValidationCallback = (_, _, _, _) => true
-};
-var client = new HttpClient(handler) { BaseAddress = new Uri("https://localhost:7097") };
+**ApiGateway (YARP).** Единая точка входа: маршрутизирует /api/catalog в CatalogService, /api/basket в BasketService и так далее, проверяет JWT.
 
-try
-{
-    // GET
-    Console.WriteLine("1. Получаем все задачи...");
-    var todos = await client.GetFromJsonAsync<List<TodoItem>>("api/todos");
-    Console.WriteLine($"   Задач в системе: {todos!.Count}");
+## 4. Как сервисы общаются
 
-    foreach (var todo in todos!)
-    {
-        Console.WriteLine($"   - {todo.Id}: {todo.Title} (Выполнено: {todo.IsCompleted})");
-    }
-    Console.WriteLine();
+Синхронно по HTTP:
 
-    // POST 
-    Console.WriteLine("2. Создаем новую задачу...");
-    var response = await client.PostAsJsonAsync("api/todos", new { Title = "Задача от консоли", Description = "Тест клиента" });
-    Console.WriteLine($"   Статус: {response.StatusCode}");
-    Console.WriteLine();
+- OrderService → CatalogService: проверка наличия и текущей цены товара при оформлении заказа;
+- OrderService → BasketService: получение содержимого корзины при оформлении;
+- Web и BlazorAdmin → сервисы через ApiGateway.
 
-    // GET
-    Console.WriteLine("3. Проверяем задачи после создания...");
-    todos = await client.GetFromJsonAsync<List<TodoItem>>("api/todos");
-    Console.WriteLine($"   Теперь задач: {todos!.Count}");
-    Console.WriteLine();
+Асинхронно через RabbitMQ (MassTransit):
 
-    // DELETE
-    if (todos.Count > 0)
-    {
-        var lastId = todos.Last().Id;
-        Console.WriteLine($"4. Удаляем задачу с id={lastId}...");
-        var del = await client.DeleteAsync($"api/todos/{lastId}");
-        Console.WriteLine($"   Статус: {del.StatusCode}");
-    }
-}
-catch (Exception ex)
-{
-    Console.WriteLine($"Ошибка: {ex.Message}");
-}
-```
+- OrderService публикует OrderCreated → NotificationService отправляет письмо, BasketService очищает корзину;
+- CatalogService публикует ProductPriceChanged → BasketService обновляет цены в открытых корзинах.
 
-Вывод 
-```text 
-1. Получаем все задачи...
-   Задач в системе: 3
-   - 1: Изучить HTTP (Выполнено: False)
-   - 2: Написать первый API (Выполнено: False)
-   - 3: Протестировать в Postman (Выполнено: False)
+Общие контракты событий выносим в отдельную библиотеку Contracts, на которую ссылаются издатель и подписчики.
 
-2. Создаем новую задачу...
-   Статус: Created
+Для HTTP-вызовов используем Polly: повтор при временной ошибке и Circuit Breaker, чтобы OrderService не зависал, если CatalogService недоступен, а возвращал понятную ошибку 503.
 
-3. Проверяем задачи после создания...
-   Теперь задач: 4
+## 5. Что меняется в данных
 
-4. Удаляем задачу с id=4...
-   Статус: NoContent
-```
+Самое сложное — разделить общую базу. Вместо одного CatalogContext получаются:
 
+- CatalogDbContext — только Catalog, CatalogBrands, CatalogTypes;
+- OrderDbContext — только Orders и OrderItems;
+- корзины уходят в Redis, таблица Baskets больше не нужна;
+- Identity остаётся отдельной базой, как и сейчас.
 
+Межсервисных внешних ключей нет: заказ хранит ProductId и BuyerId просто как значения. Из-за этого теряется общая транзакция «списать корзину и создать заказ». Мы решили, что заказ создаётся в OrderService в его транзакции, а очистка корзины происходит по событию OrderCreated. Это итоговая согласованность (eventual consistency): какое-то короткое время корзина ещё может быть не очищена.
+
+## 6. План перехода
+
+Монолит не переписываем целиком, а выносим сервисы по одному по схеме Strangler Fig. Монолит продолжает работать, пока его части постепенно заменяются.
+
+1. Поднимаем ApiGateway перед монолитом, весь трафик идёт через него.
+2. Выносим CatalogService: он независимее всех, от него никто не зависит, кроме чтения. Переключаем маршруты каталога в шлюзе на новый сервис.
+3. Выносим IdentityService и переходим на JWT во всех клиентах.
+4. Выносим BasketService с хранением в Redis.
+5. Выносим OrderService, заменяем прямые вызовы репозиториев на HTTP-клиенты к Catalog и Basket.
+6. Добавляем RabbitMQ и NotificationService.
+7. Удаляем из монолита перенесённый код. От Web остаётся только фронтенд.
+
+После каждого шага прогоняем существующие функциональные тесты Web, чтобы убедиться, что для пользователя ничего не сломалось.
+
+## 7. Инфраструктура
+
+- каждый сервис получает свой Dockerfile;
+- общий docker-compose.yml поднимает сервисы, три PostgreSQL, Redis и RabbitMQ (в проекте уже есть docker-compose для монолита, его расширяем);
+- у каждого сервиса эндпоинт /health, который проверяет его базу и брокер сообщений;
+- пароли выносятся в .env, в репозиторий кладётся только .env.example.
+
+## 8. Риски и вопросы, которые мы для себя отметили
+
+- Оформление заказа становится цепочкой сетевых вызовов: если CatalogService лежит, заказ не создать. Смягчаем через Retry и Circuit Breaker.
+- Цена в корзине может устареть. Окончательную цену всё равно берёт OrderService из каталога в момент заказа.
+- Отладка сложнее: ошибка в одном сервисе видна в другом. Нужны единые логи и сквозной идентификатор запроса.
+- Для учебного магазина такого размера микросервисы избыточны. Разделение имеет смысл, если каталог, заказы и корзина будут развиваться разными командами или требовать разного масштабирования.
+
+## 9. Итог
+
+Мы разобрали структуру eShopOnWeb, нашли в нём границы предметных областей (каталог, корзина, заказы, пользователи) и места, где монолит их смешивает. Предложили пять сервисов плюс шлюз, определили, где нужны синхронные HTTP-вызовы, а где события через RabbitMQ, как разделить общую базу и в каком порядке переносить код, не останавливая работу магазина.
