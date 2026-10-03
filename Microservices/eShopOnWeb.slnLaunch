@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Web + PublicApi",
+    "Projects": [
+      {
+        "Path": "src\\Web\\Web.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "src\\PublicApi\\PublicApi.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]
